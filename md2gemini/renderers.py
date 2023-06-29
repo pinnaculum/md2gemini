@@ -32,6 +32,7 @@ class GeminiRenderer(
         strip_html=False,
         base_url="",
         md_links=False,
+        geminize_html_links=False,
         link_func=None,
         table_tag="table",
         checklist=True,
@@ -40,6 +41,7 @@ class GeminiRenderer(
         super().__init__(escape=False, allow_harmful_protocols=True)
 
         self.md_links = md_links
+        self.geminize_html_links = geminize_html_links
         self.link_func = link_func
         if base_url is None:
             base_url = ""
@@ -157,6 +159,19 @@ class GeminiRenderer(
                 link = link[:-2] + "gmi"
             elif ".md#" in link:
                 index = link.index(".md#")
+                link = link[: index + 1] + "gmi"
+
+        if self.geminize_html_links and "//" not in link:
+            # Relative link, and xhtml/html -> gmi conversion is enabled
+            if link.endswith(".html"):
+                link = link[:-4] + "gmi"
+            elif link.endswith(".xhtml"):
+                link = link[:-5] + "gmi"
+            elif ".html#" in link:
+                index = link.index(".html#")
+                link = link[: index + 1] + "gmi"
+            elif ".xhtml#" in link:
+                index = link.index(".xhtml#")
                 link = link[: index + 1] + "gmi"
 
         if callable(self.link_func):

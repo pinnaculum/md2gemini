@@ -40,6 +40,7 @@ def md2gemini(
     strip_html=False,
     base_url="",
     md_links=False,
+    geminize_html_links=False,
     link_func=None,
     table_tag="table",
     checklist=True,
@@ -70,6 +71,7 @@ def md2gemini(
     base_url: All links starting with a slash will have this URL prepended to them.
 
     md_links: Convert all links to local files ending in .md to end with .gmi instead.
+    geminize_html_links: Convert all links to local files ending in .html or .xhtml to end with .gmi instead.
 
     link_func: Custom function to apply to links. This function takes a string containing the link
     URL as parameter, and should return the new link.
@@ -119,6 +121,7 @@ def md2gemini(
         strip_html=strip_html,
         base_url=base_url,
         md_links=md_links,
+        geminize_html_links=geminize_html_links,
         link_func=link_func,
         table_tag=table_tag,
         checklist=checklist,

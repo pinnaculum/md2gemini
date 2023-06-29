@@ -178,7 +178,8 @@ Options for the `md2gemini` function are similar to the command line ones above,
 def md2gemini(markdown, code_tag="", img_tag="[IMG]", indent=" ",
               ascii_table=False, frontmatter=False, jekyll=False,
               links="newline", plain=False, strip_html=False,
-              base_url="", md_links=False, link_func=None,
+              base_url="", md_links=False, geminize_html_links=False,
+              link_func=None,
               table_tag="table", checklist=True):
     """Convert the provided markdown text to the gemini format.
     code_tag: The default alt text for code blocks.
@@ -206,7 +207,7 @@ def md2gemini(markdown, code_tag="", img_tag="[IMG]", indent=" ",
     base_url: All links starting with a slash will have this URL prepended to them.
 
     md_links: Convert all links to local files ending in .md to end with .gmi instead.
-
+    geminize_html_links: Convert all links to local files ending in .html or .xhtml to end with .gmi instead.
     link_func: Custom function to apply to links. This function takes a string containing the link
     URL as parameter, and should return the new link.
 
