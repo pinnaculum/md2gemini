@@ -1,12 +1,11 @@
 import setuptools
-from md2gemini import __version__
 
 with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
     name="md2gemini",  # Replace with your own username
-    version=__version__,
+    version='1.9.0',
     author="makeworld",
     author_email="makeworld@protonmail.com",
     description="Convert Markdown to the Gemini text format",
